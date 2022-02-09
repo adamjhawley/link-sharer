@@ -39,8 +39,6 @@ export class LinkBox extends LitElement {
 
   constructor() {
     super();
-    this.name = "The best article ever."
-    this.link = "https://adamjhawley.github.io/post/2022-02-07-using-git-rebase-to-perfect-commits/"
   }
 
   render() {
