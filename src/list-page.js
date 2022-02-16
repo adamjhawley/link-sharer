@@ -27,6 +27,7 @@ export class ListPage extends LitElement {
 
   render() {
     return html`
+      <a href="submit-page.html"><sl-button>Submit a Link</sl-button></a>
       <ls-link-list></ls-link-list>
     `;
   }
