@@ -10,16 +10,6 @@ import {LitElement, html, css} from 'lit';
  * The small box containing a link and a title.
  */
 export class LinkBox extends LitElement {
-  static get styles() {
-    return css`
-      :host {
-        display: block;
-        border: solid 1px gray;
-        padding: 16px;
-        max-width: 800px;
-      }
-    `;
-  }
 
   static get properties() {
     return {
@@ -43,7 +33,7 @@ export class LinkBox extends LitElement {
 
   render() {
     return html`
-      <p><a href=${this.link}>${this.name}</a></p>
+      <a href=${this.link}><sl-button>${this.name}</sl-button></a>
     `;
   }
 }

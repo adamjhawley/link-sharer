@@ -28,6 +28,7 @@ export class ListPage extends LitElement {
   render() {
     return html`
       <a href="submit-page.html"><sl-button>Submit a Link</sl-button></a>
+      <sl-divider style="--width: 4px;"></sl-divider>
       <ls-link-list></ls-link-list>
     `;
   }
