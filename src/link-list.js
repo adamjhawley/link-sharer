@@ -40,7 +40,7 @@ export class LinkList extends LitElement {
   render() {
     return html`
       ${this.linkBoxes.map(lb =>
-        html`<br><ls-link-box .link=${lb.link} .name=${lb.name}></ls-link-box>`
+        html`<br><ls-link-box .link=${lb.link} .name=${lb.name}></ls-link-box><br>`
       )}
     `;
   }

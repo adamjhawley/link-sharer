@@ -6,6 +6,7 @@
 
 import {LitElement, html, css} from 'lit';
 import './link-list'
+import './header'
 
 /**
  * The small box containing a link and a title.
@@ -27,8 +28,11 @@ export class LinkSubmit extends LitElement {
 
   render() {
     return html`
+    <ls-header></ls-header>
     <sl-input label="Title" placeholder="Enter title here" clearable></sl-input>
     <sl-input label="Link" placeholder="Enter link here" clearable></sl-input>
+    <br>
+    <sl-button>Submit</sl-button>
     `;
   }
 }
