@@ -29,10 +29,10 @@ export class LinkList extends LitElement {
   constructor() {
     super();
     this.linkBoxes = [
-      {'name': 'The best article ever.',
-       'link': 'https://adamjhawley.github.io/post/2022-02-07-using-git-rebase-to-perfect-commits/'},
-      {'name': 'Another great article.',
-       'link': 'https://adamjhawley.github.io/post/2022-02-04-mastering-git-with-git-rebase/'},
+      {'name': 'Creating a Link-Sharing Site Part 0',
+       'link': 'https://adamjhawley.com/post/2022-02-16-creating-a-link-sharing-site-part-0/'},
+      {'name': 'Creating a Link-Sharing Site Part 1',
+       'link': 'https://adamjhawley.com/post/2022-03-04-creating-a-link-sharing-site-part-1/'},
 
     ]
   }
