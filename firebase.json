@@ -21,6 +21,12 @@
     "hosting": {
       "host": "localhost",
       "port": "8001"
+    },
+    "firestore": {
+      "port": 8080
+    },
+    "ui": {
+      "enabled": true
     }
   }
 }
