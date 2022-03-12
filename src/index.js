@@ -1,4 +1,4 @@
-import './list-page'
+import './link-list'
 import './link-submit'
 import './header'
 import { LitElement, html } from 'lit';
@@ -29,7 +29,7 @@ export class LinkSharer extends LitElement {
     return html`
         <ls-header @page-changed=${this.updatePage}></ls-header>
         ${this.browse
-          ? html`<ls-list-page></ls-list-page>`
+          ? html`<ls-link-list></ls-link-list>`
           : html`<ls-link-submit></ls-link-submit>`
         }
     `;
