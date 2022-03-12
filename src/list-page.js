@@ -6,7 +6,6 @@
 
 import {LitElement, html, css} from 'lit';
 import './link-list'
-import './header'
 
 /**
  * The small box containing a link and a title.
@@ -28,7 +27,6 @@ export class ListPage extends LitElement {
 
   render() {
     return html`
-      <ls-header></ls-header>
       <ls-link-list></ls-link-list>
     `;
   }

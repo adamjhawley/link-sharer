@@ -13,11 +13,19 @@ export class Header extends LitElement {
 
   render() {
     return html`
-      <a href="index.html"><sl-button variant="primary" >Latest</sl-button></a>
-      <a href="submit-page.html"><sl-button variant="primary">Submit a Link</sl-button></a>
+      <sl-button @click=${(e) => this.buttonPressed(true)} variant="primary" >Latest</sl-button>
+      <sl-button @click=${(e) => this.buttonPressed(false)} variant="primary">Submit a Link</sl-button>
 
       <sl-divider style="--width: 4px;"></sl-divider>
     `;
+  }
+
+  buttonPressed (browse) {
+    const event = new CustomEvent('page-changed', {
+      detail: { browse },
+    });
+    this.dispatchEvent(event);
+    console.log('dispatched', browse)
   }
 }
 
