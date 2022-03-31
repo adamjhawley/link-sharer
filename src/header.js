@@ -11,10 +11,20 @@ import {LitElement, html} from 'lit';
  */
 export class Header extends LitElement {
 
+  static get properties() {
+    return {
+      signedIn: {type: Boolean},
+    }
+  }
+
   render() {
     return html`
-      <sl-button @click=${(e) => this.buttonPressed(true)} variant="primary" >Latest</sl-button>
-      <sl-button @click=${(e) => this.buttonPressed(false)} variant="primary">Submit a Link</sl-button>
+      <sl-button @click=${(e) => this.buttonPressed('browse')} variant="primary" >Latest</sl-button>
+      <sl-button @click=${(e) => this.buttonPressed('submit')} variant="primary">Submit a Link</sl-button>
+      ${this.signedIn
+        ? html``
+        : html`<sl-button @click=${(e) => this.buttonPressed('signup')} variant="primary">Sign Up</sl-button>`
+      }
 
       <sl-divider style="--width: 4px;"></sl-divider>
     `;
