@@ -1,5 +1,6 @@
 import './link-list'
 import './link-submit'
+import './sign-up'
 import './header'
 import { LitElement, html } from 'lit';
 
@@ -12,6 +13,7 @@ export class LinkSharer extends LitElement {
   static get properties() {
     return {
       activePage: {type: Boolean},
+      user: {type: Object, attribute: false}
     }
   }
 
@@ -22,12 +24,19 @@ export class LinkSharer extends LitElement {
 
   updatePage (e) {
     this.activePage = e.detail.browse
+  }
 
+  handleSignIn (e) {
+    this.user = e.detail.user
+    this.activePage = 'browse'
   }
 
   render() {
     let page = html``
     switch (this.activePage) {
+      case 'signup':
+        page = html`<ls-signup @signed-in=${this.handleSignIn}></ls-signup>`
+        break;
       case 'browse':
         page = html`<ls-link-list></ls-link-list>`
         break;
@@ -38,7 +47,7 @@ export class LinkSharer extends LitElement {
         break;
     }
     return html`
-        <ls-header @page-changed=${this.updatePage}></ls-header>
+        <ls-header .signedIn=${this.user} @page-changed=${this.updatePage}></ls-header>
         ${page}
     `;
   }
