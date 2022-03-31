@@ -11,27 +11,35 @@ export class LinkSharer extends LitElement {
 
   static get properties() {
     return {
-      browse: {type: Boolean}
+      activePage: {type: Boolean},
     }
   }
 
   constructor () {
     super()
-    this.browse = true
+    this.activePage = 'browse'
   }
 
   updatePage (e) {
-    this.browse = e.detail.browse
-    console.log(e)
+    this.activePage = e.detail.browse
+
   }
 
   render() {
+    let page = html``
+    switch (this.activePage) {
+      case 'browse':
+        page = html`<ls-link-list></ls-link-list>`
+        break;
+      case 'submit':
+        page = html`<ls-link-submit></ls-link-submit>`
+        break;
+      default:
+        break;
+    }
     return html`
         <ls-header @page-changed=${this.updatePage}></ls-header>
-        ${this.browse
-          ? html`<ls-link-list></ls-link-list>`
-          : html`<ls-link-submit></ls-link-submit>`
-        }
+        ${page}
     `;
   }
 }
