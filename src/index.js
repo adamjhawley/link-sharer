@@ -57,7 +57,7 @@ export class LinkSharer extends LitElement {
         page = html`<ls-signin @signed-in=${this.handleSignIn}></ls-signin>`
         break;
       case 'browse':
-        page = html`<ls-link-list></ls-link-list>`
+        page = html`<ls-link-list .app=${app}></ls-link-list>`
         break;
       case 'submit':
         page = html`<ls-link-submit @submitted-link=${(e) => this.activePage = 'browse'} .user=${this.user} .app=${app}></ls-link-submit>`

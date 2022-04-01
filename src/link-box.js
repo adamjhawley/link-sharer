@@ -17,7 +17,7 @@ export class LinkBox extends LitElement {
        * The title of the link.
        * @type {string}
        */
-      name: {type: String},
+      title: {type: String},
 
       /**
        * The link itself.
@@ -33,7 +33,7 @@ export class LinkBox extends LitElement {
 
   render() {
     return html`
-      <a href=${this.link}><sl-button>${this.name}</sl-button></a>
+      <a href=${this.link}><sl-button>${this.title}</sl-button></a>
     `;
   }
 }
