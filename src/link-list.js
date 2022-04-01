@@ -6,6 +6,11 @@
 
 import {LitElement, html, css} from 'lit';
 import './link-box'
+import {
+  getFirestore,
+  collection,
+  getDocs
+} from 'firebase/firestore/lite'
 
 /**
  * The small box containing a link and a title.
@@ -23,24 +28,33 @@ export class LinkList extends LitElement {
        * @type {array}
        */
       linkBoxes: {type: Array},
+      /**
+       * Firebase App Object
+       * @type {Object}
+       */
+      app: {type: Object}
     };
   }
 
   constructor() {
-    super();
-    this.linkBoxes = [
-      {'name': 'Creating a Link-Sharing Site Part 0',
-       'link': 'https://adamjhawley.com/post/2022-02-16-creating-a-link-sharing-site-part-0/'},
-      {'name': 'Creating a Link-Sharing Site Part 1',
-       'link': 'https://adamjhawley.com/post/2022-03-04-creating-a-link-sharing-site-part-1/'},
+    super()
+    this.linkBoxes = []
+  }
 
-    ]
+  async connectedCallback() {
+    const db = getFirestore(this.app)
+    let col = collection(db, 'links')
+    const querySnapshot = await getDocs(col)
+    querySnapshot.forEach((doc) => {
+      this.linkBoxes.push(doc.data())
+    })
+    super.connectedCallback()
   }
 
   render() {
     return html`
       ${this.linkBoxes.map(lb =>
-        html`<br><ls-link-box .link=${lb.link} .name=${lb.name}></ls-link-box><br>`
+        html`<br><ls-link-box .link=${lb.link} .title=${lb.title}></ls-link-box><br>`
       )}
     `;
   }
