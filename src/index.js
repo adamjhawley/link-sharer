@@ -1,6 +1,7 @@
 import './link-list'
 import './link-submit'
 import './sign-up'
+import './sign-in'
 import './header'
 import { LitElement, html } from 'lit';
 
@@ -36,6 +37,9 @@ export class LinkSharer extends LitElement {
     switch (this.activePage) {
       case 'signup':
         page = html`<ls-signup @signed-in=${this.handleSignIn}></ls-signup>`
+        break;
+      case 'signin':
+        page = html`<ls-signin @signed-in=${this.handleSignIn}></ls-signin>`
         break;
       case 'browse':
         page = html`<ls-link-list></ls-link-list>`

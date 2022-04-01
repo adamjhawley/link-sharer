@@ -17,13 +17,20 @@ export class Header extends LitElement {
     }
   }
 
+  notSignedInTemp() {
+    return html`
+      <sl-button @click=${(e) => this.buttonPressed('signup')} variant="primary">Sign Up</sl-button>
+      <sl-button @click=${(e) => this.buttonPressed('signin')} variant="primary">Sign In</sl-button>
+    `
+  }
+
   render() {
     return html`
       <sl-button @click=${(e) => this.buttonPressed('browse')} variant="primary" >Latest</sl-button>
       <sl-button @click=${(e) => this.buttonPressed('submit')} variant="primary">Submit a Link</sl-button>
       ${this.signedIn
         ? html``
-        : html`<sl-button @click=${(e) => this.buttonPressed('signup')} variant="primary">Sign Up</sl-button>`
+        : this.notSignedInTemp()
       }
 
       <sl-divider style="--width: 4px;"></sl-divider>

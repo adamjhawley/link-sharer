@@ -1,42 +1,39 @@
-import {LitElement, html, css} from 'lit';
-import { getAuth, createUserWithEmailAndPassword } from "firebase/auth";
+import { LitElement, html } from 'lit';
+import { getAuth, signInWithEmailAndPassword } from "firebase/auth";
 
 /**
- * The small box containing a link and a title.
+ * Sign in page
  */
-export class SignUp extends LitElement {
-  static get styles() {
-    return css`
-    `;
-  }
-
+export class SignIn extends LitElement {
   static get properties() {
     return {
-        form: {type: Object, attribute: false},
         user: {type: Object, attribute: false}
     };
   }
 
-  createAccount(email, password) {
-    return new Promise ((resolve, reject) => {
-      console.log('creating account')
-      const auth = getAuth();
-      createUserWithEmailAndPassword(auth, email, password)
-      .then((userCredential) => {
-          this.user = userCredential.user;
-          resolve()
-      })
-    })
+  get _form () {
+    return this.renderRoot.querySelector('#signinform')
   }
 
-  get _form () {
-    return this.renderRoot.querySelector('#signupform')
+  signIn (email, password) {
+    return new Promise ((resolve, reject) => {
+      const auth = getAuth()
+      signInWithEmailAndPassword(auth, email, password)
+      .then((userCredential) => {
+        this.user = userCredential.user
+        resolve()
+      })
+      .catch((error) => {
+        console.log(error)
+        reject()
+      });
+    })
   }
 
   async handleSubmit (e) {
     let email = this._form.querySelector('#email').value
     let password = this._form.querySelector('#password').value
-    await this.createAccount(email, password)
+    await this.signIn(email, password)
 
     const event = new CustomEvent('signed-in', {
       detail: { user: this.user },
@@ -47,7 +44,7 @@ export class SignUp extends LitElement {
 
   render() {
     return html`
-        <div id="signupform">
+        <div id="signinform">
             <sl-input id="email" label="Email" type="email" placeholder="Enter email here" clearable></sl-input>
             <sl-input id="password" label="Password" type="password" toggle-password placeholder="Enter password here"></sl-input>
             <br>
@@ -57,4 +54,4 @@ export class SignUp extends LitElement {
   }
 }
 
-window.customElements.define('ls-signup', SignUp);
+window.customElements.define('ls-signin', SignIn);
