@@ -1,3 +1,9 @@
+/**
+ * @license
+ * Copyright 2022 Adam Hawley
+ * SPDX-License-Identifier: BSD-3-Clause
+ */
+
 import { LitElement, html } from 'lit';
 import { getAuth, signInWithEmailAndPassword } from "firebase/auth";
 
